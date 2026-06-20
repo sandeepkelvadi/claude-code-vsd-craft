@@ -1,0 +1,81 @@
+{
+  "SDKVersion": 1,
+  "Author": "Sandeep Kelvadi",
+  "Name": "Claude Code Control",
+  "Icon": "static/icon",
+  "CodePathMac": "plugin/index.js",
+  "CodePathWin": "plugin/index.js",
+  "Description": "Drive Claude Code from your VSD Craft: slash commands, interrupt, toggle mode, switch session tabs, and a session dial.",
+  "Category": "Claude Code",
+  "CategoryIcon": "static/icon",
+  "Version": "1.0.0",
+  "URL": "https://claude.com/claude-code",
+  "OS": [
+    { "Platform": "mac", "MinimumVersion": "10.13" },
+    { "Platform": "windows", "MinimumVersion": "10" }
+  ],
+  "Software": { "MinimumVersion": "3.10" },
+  "Nodejs": { "Version": "20" },
+  "Actions": [
+    {
+      "Icon": "static/command",
+      "Name": "Send Command",
+      "DisableAutomaticStates": true,
+      "States": [
+        { "Image": "static/command", "TitleAlignment": "bottom", "FontSize": "9" }
+      ],
+      "Settings": { "text": "/clear", "pressEnter": true, "clearFirst": false },
+      "Controllers": ["Keypad"],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Type a slash command or prompt into the focused Claude Code session.",
+      "UUID": "com.sandeep.claudecode.command",
+      "PropertyInspectorPath": "propertyInspector/command/index.html"
+    },
+    {
+      "Icon": "static/key",
+      "Name": "Send Key",
+      "DisableAutomaticStates": true,
+      "States": [
+        { "Image": "static/key", "TitleAlignment": "bottom", "FontSize": "9" }
+      ],
+      "Settings": { "keyAction": "interrupt" },
+      "Controllers": ["Keypad"],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Send a Claude Code control key: Interrupt, Submit, Toggle mode, Approve, Reject, History, Quit.",
+      "UUID": "com.sandeep.claudecode.key",
+      "PropertyInspectorPath": "propertyInspector/key/index.html"
+    },
+    {
+      "Icon": "static/tab",
+      "Name": "Switch Session",
+      "DisableAutomaticStates": true,
+      "States": [
+        { "Image": "static/tab", "TitleAlignment": "bottom", "FontSize": "9" }
+      ],
+      "Settings": { "mode": "number", "tabNumber": 1 },
+      "Controllers": ["Keypad"],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": true,
+      "Tooltip": "Jump to a terminal tab (where a Claude Code session runs), or cycle next/previous.",
+      "UUID": "com.sandeep.claudecode.tab",
+      "PropertyInspectorPath": "propertyInspector/tab/index.html"
+    },
+    {
+      "Icon": "static/dial",
+      "Name": "Session Dial",
+      "DisableAutomaticStates": true,
+      "States": [
+        { "Image": "static/dial", "TitleAlignment": "bottom", "FontSize": "9" }
+      ],
+      "Settings": { "rotateAction": "history", "pressAction": "interrupt" },
+      "Controllers": ["Knob", "Keypad"],
+      "UserTitleEnabled": true,
+      "SupportedInMultiActions": false,
+      "Tooltip": "Rotate to move through history / tabs / scroll; press to interrupt, submit, or toggle mode.",
+      "UUID": "com.sandeep.claudecode.dial",
+      "PropertyInspectorPath": "propertyInspector/dial/index.html"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "claude-code-vsd-plugin",
+  "version": "1.0.0",
+  "description": "Drive Claude Code from a VSD Craft device",
+  "main": "index.js",
+  "author": "Sandeep Kelvadi",
+  "license": "MIT",
+  "dependencies": {
+    "ws": "^8.21.0"
+  }
+}

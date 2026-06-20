@@ -1,0 +1,13 @@
+# plugin runtime logs
+com.sandeep.claudecode.sdPlugin/log/
+*.log
+
+# macOS
+.DS_Store
+
+# editor
+.vscode/
+.idea/
+
+# note: plugin/node_modules/ws IS committed on purpose — VSD Craft ships no
+# package manager, so the dependency must be vendored with the plugin.

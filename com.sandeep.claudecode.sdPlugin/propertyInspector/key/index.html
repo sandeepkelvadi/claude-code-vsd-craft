@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Send Key</title>
+  <link rel="stylesheet" href="../shared/pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label>Claude Code key</label>
+    <select id="keyAction">
+      <optgroup label="Run / stop">
+        <option value="interrupt">Interrupt (Esc) — stop Claude</option>
+        <option value="submit">Submit (Enter)</option>
+        <option value="quit">Quit (Ctrl+C)</option>
+      </optgroup>
+      <optgroup label="Permissions / mode">
+        <option value="toggleMode">Toggle mode (Shift+Tab) — auto-accept / plan</option>
+        <option value="approve">Approve default (Enter)</option>
+        <option value="option1">Choose option 1</option>
+        <option value="option2">Choose option 2</option>
+        <option value="option3">Choose option 3</option>
+        <option value="reject">Reject (Esc)</option>
+      </optgroup>
+      <optgroup label="Input / editing">
+        <option value="newline">New line (Shift+Enter)</option>
+        <option value="clearLine">Clear line (Ctrl+U)</option>
+        <option value="historyPrev">Previous in history (Up)</option>
+        <option value="historyNext">Next in history (Down)</option>
+        <option value="doubleEsc">Edit previous (Esc Esc)</option>
+      </optgroup>
+      <optgroup label="Prompt shortcuts">
+        <option value="bashMode">Bash mode (!)</option>
+        <option value="memorize">Memory (#)</option>
+        <option value="fileMention">File mention (@)</option>
+      </optgroup>
+    </select>
+    <p class="hint">Sends the matching keystroke to the focused Claude Code session.</p>
+  </div>
+
+  <hr />
+  <div data-target-app></div>
+
+  <div class="tip">"Toggle mode" cycles Claude Code's permission modes
+    (normal → auto-accept edits → plan). "Interrupt" is the fastest way to stop a
+    run mid-stream.</div>
+
+  <script src="../shared/pi.js"></script>
+  <script>
+    const keyAction = document.getElementById('keyAction');
+    PI.onReady(function (s) { keyAction.value = s.keyAction || 'interrupt'; });
+    keyAction.addEventListener('change', function () { PI.set('keyAction', keyAction.value); });
+    mountTargetApp();
+  </script>
+</body>
+</html>

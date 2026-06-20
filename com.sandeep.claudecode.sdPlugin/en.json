@@ -1,0 +1,22 @@
+{
+  "Name": "Claude Code Control",
+  "Description": "Drive Claude Code from your VSD Craft device.",
+  "Category": "Claude Code",
+  "com.sandeep.claudecode.command": {
+    "Name": "Send Command",
+    "Tooltip": "Type a slash command or prompt into the focused Claude Code session."
+  },
+  "com.sandeep.claudecode.key": {
+    "Name": "Send Key",
+    "Tooltip": "Send a Claude Code control key (Interrupt, Submit, Toggle mode, ...)."
+  },
+  "com.sandeep.claudecode.tab": {
+    "Name": "Switch Session",
+    "Tooltip": "Jump to a terminal tab where a Claude Code session runs."
+  },
+  "com.sandeep.claudecode.dial": {
+    "Name": "Session Dial",
+    "Tooltip": "Rotate to move through history/tabs; press to interrupt."
+  },
+  "Localization": {}
+}

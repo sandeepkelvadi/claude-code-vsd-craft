@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Session Dial</title>
+  <link rel="stylesheet" href="../shared/pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label>Rotate does</label>
+    <select id="rotateAction">
+      <option value="history">Move through input history (Up / Down)</option>
+      <option value="scroll">Scroll / move cursor (Up / Down)</option>
+      <option value="tabs">Switch session tabs (prev / next)</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label>Press does</label>
+    <select id="pressAction">
+      <option value="interrupt">Interrupt (Esc)</option>
+      <option value="submit">Submit (Enter)</option>
+      <option value="toggleMode">Toggle mode (Shift+Tab)</option>
+      <option value="approve">Approve default (Enter)</option>
+      <option value="quit">Quit (Ctrl+C)</option>
+    </select>
+  </div>
+
+  <hr />
+  <div data-target-app></div>
+
+  <div class="tip">Put this on a dial: spin to scrub history or hop between
+    sessions, push in to interrupt. Clockwise = next / down.</div>
+
+  <script src="../shared/pi.js"></script>
+  <script>
+    const rotateAction = document.getElementById('rotateAction');
+    const pressAction = document.getElementById('pressAction');
+    PI.onReady(function (s) {
+      rotateAction.value = s.rotateAction || 'history';
+      pressAction.value = s.pressAction || 'interrupt';
+    });
+    rotateAction.addEventListener('change', function () { PI.set('rotateAction', rotateAction.value); });
+    pressAction.addEventListener('change', function () { PI.set('pressAction', pressAction.value); });
+    mountTargetApp();
+  </script>
+</body>
+</html>

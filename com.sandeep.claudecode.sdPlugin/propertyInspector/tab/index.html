@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Switch Session</title>
+  <link rel="stylesheet" href="../shared/pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label>Action</label>
+    <select id="mode">
+      <option value="number">Jump to tab number</option>
+      <option value="next">Next tab (Cmd+Shift+])</option>
+      <option value="prev">Previous tab (Cmd+Shift+[)</option>
+    </select>
+  </div>
+
+  <div class="field" id="numWrap">
+    <label>Tab number</label>
+    <select id="tabNumber">
+      <option>1</option><option>2</option><option>3</option><option>4</option>
+      <option>5</option><option>6</option><option>7</option><option>8</option><option>9</option>
+    </select>
+    <p class="hint">Sends Cmd+&lt;number&gt; — selects that terminal tab, where a
+      Claude Code session is running.</p>
+  </div>
+
+  <hr />
+  <div data-target-app></div>
+
+  <div class="tip">Tab shortcuts are tuned for <b>iTerm2</b> and <b>Terminal</b>.
+    Keep each Claude Code session in its own tab and map tabs 1–9 to buttons.</div>
+
+  <script src="../shared/pi.js"></script>
+  <script>
+    const mode = document.getElementById('mode');
+    const tabNumber = document.getElementById('tabNumber');
+    const numWrap = document.getElementById('numWrap');
+
+    function syncVisible() { numWrap.style.display = mode.value === 'number' ? 'block' : 'none'; }
+
+    PI.onReady(function (s) {
+      mode.value = s.mode || 'number';
+      tabNumber.value = String(s.tabNumber || 1);
+      syncVisible();
+    });
+    mode.addEventListener('change', function () { PI.set('mode', mode.value); syncVisible(); });
+    tabNumber.addEventListener('change', function () { PI.set('tabNumber', parseInt(tabNumber.value, 10)); });
+    mountTargetApp();
+  </script>
+</body>
+</html>

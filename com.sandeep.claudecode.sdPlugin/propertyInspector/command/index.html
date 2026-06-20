@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Send Command</title>
+  <link rel="stylesheet" href="../shared/pi.css" />
+</head>
+<body>
+  <div class="field">
+    <label>Command or prompt</label>
+    <textarea id="text" placeholder="/clear"></textarea>
+    <p class="hint">Typed into the focused Claude Code session. Use a slash command
+      (<code>/clear</code>, <code>/compact</code>, <code>/model</code>, <code>/resume</code>)
+      or any reusable prompt snippet.</p>
+  </div>
+
+  <div class="row">
+    <input type="checkbox" id="pressEnter" />
+    <label for="pressEnter">Press Enter after typing (run it)</label>
+  </div>
+  <div class="row">
+    <input type="checkbox" id="clearFirst" />
+    <label for="clearFirst">Clear the input line first (Ctrl+U)</label>
+  </div>
+
+  <hr />
+  <div data-target-app></div>
+
+  <div class="tip">Tip: leave "Press Enter" on for slash commands. Turn it off to
+    pre-fill a prompt you want to edit before sending.</div>
+
+  <script src="../shared/pi.js"></script>
+  <script>
+    const text = document.getElementById('text');
+    const pressEnter = document.getElementById('pressEnter');
+    const clearFirst = document.getElementById('clearFirst');
+
+    PI.onReady(function (s) {
+      text.value = s.text != null ? s.text : '/clear';
+      pressEnter.checked = s.pressEnter !== false;
+      clearFirst.checked = !!s.clearFirst;
+    });
+    text.addEventListener('input', function () { PI.set('text', text.value); });
+    pressEnter.addEventListener('change', function () { PI.set('pressEnter', pressEnter.checked); });
+    clearFirst.addEventListener('change', function () { PI.set('clearFirst', clearFirst.checked); });
+
+    mountTargetApp();
+  </script>
+</body>
+</html>
